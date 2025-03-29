@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 下载卡片为图片
     downloadBtn.addEventListener('click', function() {
         // 添加下载动画
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 处理中...';
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
         
         // 保存原始旋转状态
         const originalTransform = card.style.transform;
