@@ -440,7 +440,7 @@ footer {
 .vintage-whale-logo {
     width: 80px;
     height: 60px;
-    background-color: #f8d568;
+    background-color: #6ab7ff;
     position: relative;
     border-radius: 40% 40% 50% 50%;
     overflow: visible;
@@ -452,29 +452,46 @@ footer {
 .vintage-whale-logo::before {
     content: '';
     position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    border-radius: 50%;
+    top: 15px;
+    left: 20px;
+    box-shadow: 0 0 0 3px #6ab7ff, 0 0 0 5px #333;
+}
+
+/* 鲸鱼喷水 */
+.vintage-whale-logo::after {
+    content: '';
+    position: absolute;
     width: 8px;
     height: 15px;
-    background-color: #e94e1b;
+    background-color: #a0d8ff;
     border-radius: 4px;
     top: -12px;
-    left: 20px;
+    left: 30px;
     transform: rotate(-15deg);
     border: 2px solid #333;
 }
 
 /* 鲸鱼尾巴 */
-.vintage-whale-logo::after {
+.vintage-whale-logo {
+    position: relative;
+}
+.vintage-whale-logo::before {
     content: '';
     position: absolute;
     width: 20px;
-    height: 15px;
-    background-color: #f8d568;
+    height: 25px;
+    background-color: #6ab7ff;
+    border-radius: 50% 50% 0 0;
+    bottom: -10px;
+    right: -10px;
+    transform: rotate(45deg);
     border: 2px solid #333;
     border-bottom: none;
-    border-radius: 50% 50% 0 0;
-    bottom: -8px;
-    right: -5px;
-    transform: rotate(45deg);
+    z-index: -1;
 }
 
 /* 蘑菇风格卡片 */
