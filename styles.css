@@ -89,28 +89,29 @@ textarea {
 
 .style-options {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .style-btn {
-    padding: 10px 15px;
-    background: #fffbf0;
+    width: 30px;  /* 减小宽度 */
+    height: 30px; /* 减小高度 */
     border: 2px solid #f8d568;
-    border-radius: 8px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: none; /* 移除阴影增加平面感 */
 }
 
 .style-btn:hover {
-    background: #f8d568;
+    transform: scale(1.05); /* 减小悬停时的放大效果 */
+    border-color: #e94e1b;
 }
 
 .style-btn.active {
-    background: #e94e1b;
-    color: white;
-    border-color: #e94e1b;
+  border-color: #e94e1b;
+    border-width: 3px; /* 增加边框宽度代替阴影效果 */
 }
 
 /* Card Preview Styles */
