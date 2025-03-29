@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Sentence Cards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Dancing+Script:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="retro-background"></div>
+    
+    <header>
+        <div class="logo-container">
+            <div class="vintage-whale-logo"></div>
+        </div>
+        <h1>Gold Sentence Cards</h1>
+        <p>Create and share beautiful cards with your favorite quotes</p>
+    </header>
+
+    <main>
+        <div class="card-creator">
+            <div class="controls">
+                <div class="input-group">
+                    <label for="quote-text">Your Gold Sentence:</label>
+                    <textarea id="quote-text" placeholder="Enter your favorite quote or golden sentence here..."></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label for="author">Author (optional):</label>
+                    <input type="text" id="author" placeholder="Who said it?">
+                </div>
+                
+                <div class="input-group">
+                    <label>Card Style:</label>
+                    <div class="style-options">
+                        <button class="style-btn" data-style="elegant">Elegant</button>
+                        <button class="style-btn" data-style="collage1">Collage 1</button>
+                        <button class="style-btn" data-style="collage2">Collage 2</button>
+                        <button class="style-btn" data-style="mushroom">Mushroom</button>
+                        <button class="style-btn" data-style="vintage">Vintage</button>
+                        <button class="style-btn" data-style="dark">Dark</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Font Style:</label>
+                    <select id="font-select">
+                        <option value="'Playfair Display', serif">Elegant</option>
+                        <option value="'Dancing Script', cursive">Handwritten</option>
+                        <option value="'Permanent Marker', cursive">Marker</option>
+                        <option value="'Roboto', sans-serif">Modern</option>
+                        <option value="'Georgia', serif">Classic</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Text Color:</label>
+                    <div class="color-options">
+                        <button class="color-btn" data-color="#000000" style="background-color: #000000;"></button>
+                        <button class="color-btn" data-color="#ffffff" style="background-color: #ffffff;"></button>
+                        <button class="color-btn" data-color="#e94e1b" style="background-color: #e94e1b;"></button>
+                        <button class="color-btn" data-color="#1da1f2" style="background-color: #1da1f2;"></button>
+                        <button class="color-btn" data-color="#4caf50" style="background-color: #4caf50;"></button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Custom Background (optional):</label>
+                    <input type="file" id="bg-image-upload" accept="image/*">
+                </div>
+            </div>
+            
+            <div class="card-preview">
+                <div id="card" class="card elegant">
+                    <div class="quote-content">
+                        <p id="card-quote">"The best way to predict the future is to create it."</p>
+                        <p id="card-author">- Abraham Lincoln</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="download-btn"><i class="fas fa-download"></i> Download Card</button>
+            <button id="share-btn"><i class="fas fa-share-alt"></i> Share Card</button>
+            <button id="new-card-btn"><i class="fas fa-plus"></i> New Card</button>
+        </div>
+    </main>
+
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Share Your Gold Sentence</h2>
+            <div class="share-options">
+                <button class="share-option" data-platform="twitter"><i class="fab fa-twitter"></i> Twitter</button>
+                <button class="share-option" data-platform="facebook"><i class="fab fa-facebook"></i> Facebook</button>
+                <button class="share-option" data-platform="pinterest"><i class="fab fa-pinterest"></i> Pinterest</button>
+                <button class="share-option" data-platform="email"><i class="fas fa-envelope"></i> Email</button>
+            </div>
+            <div class="link-share">
+                <input type="text" id="share-link" readonly>
+                <button id="copy-link-btn">Copy Link</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Gold Sentence Cards | Create beautiful quote cards to inspire others</p>
+        <div class="app-links">
+            <a href="#" class="app-link"><i class="fab fa-android"></i> Android App</a>
+            <a href="#" class="app-link"><i class="fab fa-apple"></i> iOS App</a>
+        </div>
+    </footer>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
