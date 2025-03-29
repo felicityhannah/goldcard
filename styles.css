@@ -406,6 +406,34 @@ textarea {
     font-weight: bold;
 }
 
+/* 修改颜色选择按钮样式 */
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.color-btn {
+    width: 30px;  /* 减小宽度 */
+    height: 30px; /* 减小高度 */
+    border: 2px solid #f8d568;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: none; /* 移除阴影增加平面感 */
+}
+
+.color-btn:hover {
+    transform: scale(1.05); /* 减小悬停时的放大效果 */
+    border-color: #e94e1b;
+}
+
+.color-btn.active {
+    border-color: #e94e1b;
+    border-width: 3px; /* 增加边框宽度代替阴影效果 */
+}
+
 /* Discord联系方式样式 */
 .contact-links {
     display: flex;
