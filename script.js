@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (method === 'alipay') {
             // Alipay QR code
             if (paymentQrcode) {
-                paymentQrcode.src = 'alipay-qrcode.png';
+                paymentQrcode.src = 'alipay-qr.png';
             }
             if (qrcodeText) {
                 qrcodeText.textContent = `Scan this QR code to pay $${selectedAmount} with Alipay`;
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (method === 'paypal') {
             // PayPal payment
             if (paymentQrcode) {
-                paymentQrcode.src = 'paypal-qrcode.png'; // If you have a PayPal QR code image
+                paymentQrcode.src = 'paypal-qr.png'; // If you have a PayPal QR code image
             }
             if (qrcodeText) {
                 qrcodeText.textContent = `Use PayPal to pay $${selectedAmount}`;
@@ -469,9 +469,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Update PayPal link
-            if (paypalDirectLink) {
-                paypalDirectLink.href = `https://www.paypal.com/paypalme/felicityhannah8/${selectedAmount}`;
-            }
+          //  if (paypalDirectLink) {
+              //  paypalDirectLink.href = `https://www.paypal.com/paypalme/felicityhannah8/${selectedAmount}`; }
+        
         }
     }
 
