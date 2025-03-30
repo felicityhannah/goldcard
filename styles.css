@@ -601,7 +601,37 @@ footer {
     padding: 12px; /* 减小内边距 */
 }
 
+/* 添加二维码区域的滑动效果 */
+.payment-modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.qrcode-display {
+    max-height: 100%;
+    overflow-y: visible;
+}
+
+
 /* 调整二维码容器的大小 */
+.qrcode-container {
+    margin: 15px auto;
+    max-width: 100px; /* 减小二维码大小 */
+    text-align: center;
+}
+
+.qrcode-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 确保在移动设备上也能正常滑动 */
+@media (max-width: 768px) {
+    .payment-modal-content {
+        max-height: 70vh;
+    }
+}
+
 .qrcode-container {
     margin: 15px auto;
     max-width: 180px; /* 减小二维码大小 */
