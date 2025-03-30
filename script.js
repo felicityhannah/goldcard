@@ -195,7 +195,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         });
     });
- // Open share modal
+
+    // Open share modal
     shareBtn.addEventListener('click', function() {
         // Generate a dummy share link (in a real app, this would be a unique URL)
         shareLink.value = window.location.href;
@@ -290,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
     card.addEventListener('mouseout', function() {
         this.style.transform = 'rotate(-2deg) scale(1)';
     });
-
     
     // Payment functionality
     // Get payment related elements
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update PayPal link
             if (paypalDirectLink) {
-                paypalDirectLink.href = `https://www.paypal.com/paypalme/YourPayPalUsername/${selectedAmount}`;
+                paypalDirectLink.href = `https://www.paypal.com/paypalme/felicityhannah8/${selectedAmount}`;
             }
         }
     }
@@ -479,4 +479,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const paypalLinkContainer = document.getElementById('paypal-link-container');
     const paypalDirectLink = document.getElementById('paypal-direct-link');
 });
+
 
