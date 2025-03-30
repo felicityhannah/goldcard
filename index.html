@@ -19,6 +19,7 @@
         </div>
         <h1>Gold Sentence Cards</h1>
         <p>Create and share beautiful cards with your favorite quotes</p>
+        <a href="#" class="support-btn" id="support-btn"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>      
     </header>
 
     <main>
@@ -118,10 +119,44 @@
         </div>
     </footer>
 
+      <!-- 添加支付模态框 -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content payment-modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Support Our Work</h2>
+            <p>If you like this tool, you can buy me a coffee to support my future creations!</p>
+            
+            <div class="donation-benefits">
+                <p><i class="fas fa-gift"></i> Whatever's on your mind, I'm here. You can reach me at 123@123.com</p>
+            </div>
+            
+            <div class="payment-amount">
+                <button class="amount-btn" data-amount="3">$3</button>
+                <button class="amount-btn" data-amount="5">$5</button>
+                <button class="amount-btn active" data-amount="10">$10</button>
+                <button class="amount-btn" data-amount="20">$20</button>
+                <div class="custom-amount">
+                    <input type="number" id="custom-amount" placeholder="Custom amount" min="1">
+                    <span>$</span>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <button id="alipay-btn" class="payment-method-btn">
+                    <img src="alipay-logo.png" alt="Alipay">
+                    <span>Alipay</span>
+                </button>
+                <button id="paypal-btn" class="payment-method-btn">
+                    <i class="fab fa-paypal"></i>
+                    <span>PayPal</span>
+                </button>
+            </div>
+            
+            <p class="donation-note">May the force be with you 🪄⚔️</p>
+        </div>
+    </div>  
+    
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="script.js"></script>
-  
 </body>
 </html>
-
-
