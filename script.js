@@ -195,7 +195,103 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         });
     });
+ // Open share modal
+    shareBtn.addEventListener('click', function() {
+        // Generate a dummy share link (in a real app, this would be a unique URL)
+        shareLink.value = window.location.href;
+        shareModal.style.display = 'flex';
+    });
 
+    // Close share modal
+    closeBtn.addEventListener('click', function() {
+        shareModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === shareModal) {
+            shareModal.style.display = 'none';
+        }
+    });
+
+    // Share options
+    shareOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const platform = this.getAttribute('data-platform');
+            const text = encodeURIComponent(`${cardQuote.textContent} ${cardAuthor.textContent}`);
+            const url = encodeURIComponent(window.location.href);
+            
+            let shareUrl;
+            
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'pinterest':
+                    shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${text}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=Check out this Gold Sentence&body=${text} ${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+        });
+    });
+
+    // Copy share link
+    copyLinkBtn.addEventListener('click', function() {
+        shareLink.select();
+        document.execCommand('copy');
+        this.textContent = 'Copied!';
+        setTimeout(() => {
+            this.textContent = 'Copy Link';
+        }, 2000);
+    });
+
+    // Create new card
+    newCardBtn.addEventListener('click', function() {
+        quoteInput.value = '';
+        authorInput.value = '';
+        cardQuote.textContent = '"Your quote will appear here"';
+        cardAuthor.textContent = '- Author';
+        
+        // Reset to default style
+        card.classList.remove('elegant', 'minimal', 'vibrant', 'dark', 'collage1', 'collage2', 'vintage');
+        card.classList.add('elegant');
+        
+        // Reset active button
+        styleBtns.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('[data-style="elegant"]').classList.add('active');
+        
+        // Reset font
+        fontSelect.value = "'Playfair Display', serif";
+        cardQuote.style.fontFamily = "'Playfair Display', serif";
+        cardAuthor.style.fontFamily = "'Playfair Display', serif";
+        
+        // Reset text color
+        cardQuote.style.color = '#333';
+        cardAuthor.style.color = '#333';
+    });
+
+    // Initialize with active elegant style
+    document.querySelector('[data-style="elegant"]').classList.add('active');
+    
+    // Add card hover effect
+    card.addEventListener('mouseover', function() {
+        this.style.transform = 'rotate(0deg) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseout', function() {
+        this.style.transform = 'rotate(-2deg) scale(1)';
+    });
+
+    
     // Payment functionality
     // Get payment related elements
     const supportBtn = document.getElementById('support-btn');
@@ -384,99 +480,3 @@ document.addEventListener('DOMContentLoaded', function() {
     const paypalDirectLink = document.getElementById('paypal-direct-link');
 });
 
-    
-    // Open share modal
-    shareBtn.addEventListener('click', function() {
-        // Generate a dummy share link (in a real app, this would be a unique URL)
-        shareLink.value = window.location.href;
-        shareModal.style.display = 'flex';
-    });
-
-    // Close share modal
-    closeBtn.addEventListener('click', function() {
-        shareModal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside
-    window.addEventListener('click', function(event) {
-        if (event.target === shareModal) {
-            shareModal.style.display = 'none';
-        }
-    });
-
-    // Share options
-    shareOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const platform = this.getAttribute('data-platform');
-            const text = encodeURIComponent(`${cardQuote.textContent} ${cardAuthor.textContent}`);
-            const url = encodeURIComponent(window.location.href);
-            
-            let shareUrl;
-            
-            switch(platform) {
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-                    break;
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                    break;
-                case 'pinterest':
-                    shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${text}`;
-                    break;
-                case 'email':
-                    shareUrl = `mailto:?subject=Check out this Gold Sentence&body=${text} ${url}`;
-                    break;
-            }
-            
-            if (shareUrl) {
-                window.open(shareUrl, '_blank');
-            }
-        });
-    });
-
-    // Copy share link
-    copyLinkBtn.addEventListener('click', function() {
-        shareLink.select();
-        document.execCommand('copy');
-        this.textContent = 'Copied!';
-        setTimeout(() => {
-            this.textContent = 'Copy Link';
-        }, 2000);
-    });
-
-    // Create new card
-    newCardBtn.addEventListener('click', function() {
-        quoteInput.value = '';
-        authorInput.value = '';
-        cardQuote.textContent = '"Your quote will appear here"';
-        cardAuthor.textContent = '- Author';
-        
-        // Reset to default style
-        card.classList.remove('elegant', 'minimal', 'vibrant', 'dark', 'collage1', 'collage2', 'vintage');
-        card.classList.add('elegant');
-        
-        // Reset active button
-        styleBtns.forEach(btn => btn.classList.remove('active'));
-        document.querySelector('[data-style="elegant"]').classList.add('active');
-        
-        // Reset font
-        fontSelect.value = "'Playfair Display', serif";
-        cardQuote.style.fontFamily = "'Playfair Display', serif";
-        cardAuthor.style.fontFamily = "'Playfair Display', serif";
-        
-        // Reset text color
-        cardQuote.style.color = '#333';
-        cardAuthor.style.color = '#333';
-    });
-
-    // Initialize with active elegant style
-    document.querySelector('[data-style="elegant"]').classList.add('active');
-    
-    // Add card hover effect
-    card.addEventListener('mouseover', function() {
-        this.style.transform = 'rotate(0deg) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseout', function() {
-        this.style.transform = 'rotate(-2deg) scale(1)';
-    });
