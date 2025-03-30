@@ -480,4 +480,3 @@ document.addEventListener('DOMContentLoaded', function() {
     card.addEventListener('mouseout', function() {
         this.style.transform = 'rotate(-2deg) scale(1)';
     });
-});
