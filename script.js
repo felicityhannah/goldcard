@@ -188,14 +188,203 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.innerHTML = '<i class="fas fa-download"></i> Download Card';
                     }, 1000);
                 }).catch(err => {
-                    console.error('下载失败:', err);
+                    console.error('Download failed:', err);
                     this.innerHTML = '<i class="fas fa-download"></i> Download Card';
-                    alert('下载失败，请重试');
+                    alert('Download failed, please try again');
                 });
             }, 500);
         });
     });
 
+    // Payment functionality
+    // Get payment related elements
+    const supportBtn = document.getElementById('support-btn');
+    const paymentModal = document.getElementById('payment-modal');
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customAmount = document.getElementById('custom-amount');
+    const alipayBtn = document.getElementById('alipay-btn');
+    const qrcodeDisplay = document.getElementById('qrcode-display');
+    const paymentMethods = document.querySelector('.payment-methods');
+    const backToMethodsBtn = document.getElementById('back-to-methods');
+    const paymentQrcode = document.getElementById('payment-qrcode');
+    const qrcodeText = document.getElementById('qrcode-text');
+    const paymentTypeLabel = document.getElementById('payment-type-label');
+    
+    // Default amount
+    let selectedAmount = 10;
+    
+    // Open payment modal
+    if (supportBtn) {
+        supportBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            paymentModal.style.display = 'block';
+            // Ensure payment methods are shown, hide QR code
+            if (paymentMethods && qrcodeDisplay) {
+                paymentMethods.style.display = 'flex';
+                qrcodeDisplay.style.display = 'none';
+            }
+        });
+    }
+    
+    // Close payment modal
+    if (paymentModal) {
+        const closeBtn = paymentModal.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                paymentModal.style.display = 'none';
+            });
+        }
+    
+        // Close when clicking outside the modal
+        window.addEventListener('click', function(e) {
+            if (e.target === paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+        });
+    }
+    
+    // Select amount
+    if (amountBtns) {
+        amountBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                amountBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedAmount = parseFloat(this.getAttribute('data-amount'));
+                if (customAmount) {
+                    customAmount.value = '';
+                }
+                
+                // If QR code is already displayed, update amount
+                if (qrcodeDisplay && qrcodeDisplay.style.display === 'block') {
+                    updateQRCodeAndLink();
+                }
+            });
+        });
+    }
+    
+    // Custom amount
+    if (customAmount) {
+        customAmount.addEventListener('input', function() {
+            if (this.value) {
+                selectedAmount = parseFloat(this.value);
+                if (amountBtns) {
+                    amountBtns.forEach(btn => btn.classList.remove('active'));
+                }
+                
+                // If QR code is already displayed, update amount
+                if (qrcodeDisplay && qrcodeDisplay.style.display === 'block') {
+                    updateQRCodeAndLink();
+                }
+            }
+        });
+    }
+    
+    // Alipay payment - show QR code
+    if (alipayBtn) {
+        alipayBtn.addEventListener('click', function() {
+            if (selectedAmount <= 0) {
+                alert('Please select or enter a valid amount');
+                return;
+            }
+            
+            // Show Alipay QR code
+            showQRCode('alipay');
+        });
+    }
+    
+    // Return to payment method selection
+    if (backToMethodsBtn) {
+        backToMethodsBtn.addEventListener('click', function() {
+            if (paymentMethods && qrcodeDisplay) {
+                paymentMethods.style.display = 'flex';
+                qrcodeDisplay.style.display = 'none';
+            }
+        });
+    }
+    
+    // Get PayPal button element
+    const paypalBtn = document.getElementById('paypal-btn');
+    
+    // PayPal payment - show link
+    if (paypalBtn) {
+        paypalBtn.addEventListener('click', function() {
+            if (selectedAmount <= 0) {
+                alert('Please select or enter a valid amount');
+                return;
+            }
+            
+            // Show PayPal payment link
+            showQRCode('paypal');
+        });
+    }
+    
+    // Show QR code and link
+    function showQRCode(method) {
+        if (paymentMethods && qrcodeDisplay) {
+            // Hide payment method selection, show QR code
+            paymentMethods.style.display = 'none';
+            qrcodeDisplay.style.display = 'block';
+            
+            if (method === 'alipay') {
+                // Alipay QR code
+                updateQRCodeAndLink('alipay');
+                
+                // Hide PayPal link container
+                if (paypalLinkContainer) {
+                    paypalLinkContainer.style.display = 'none';
+                }
+            } else if (method === 'paypal') {
+                // PayPal payment
+                updateQRCodeAndLink('paypal');
+                
+                // Show PayPal link container
+                if (paypalLinkContainer) {
+                    paypalLinkContainer.style.display = 'block';
+                }
+            }
+        }
+    }
+    
+    // Update QR code and link
+    function updateQRCodeAndLink(method) {
+        if (method === 'alipay') {
+            // Alipay QR code
+            if (paymentQrcode) {
+                paymentQrcode.src = 'alipay-qrcode.png';
+            }
+            if (qrcodeText) {
+                qrcodeText.textContent = `Scan this QR code to pay $${selectedAmount} with Alipay`;
+            }
+            if (paymentTypeLabel) {
+                paymentTypeLabel.textContent = 'Alipay Payment';
+                paymentTypeLabel.className = 'payment-type-label alipay';
+            }
+        } else if (method === 'paypal') {
+            // PayPal payment
+            if (paymentQrcode) {
+                paymentQrcode.src = 'paypal-qrcode.png'; // If you have a PayPal QR code image
+            }
+            if (qrcodeText) {
+                qrcodeText.textContent = `Use PayPal to pay $${selectedAmount}`;
+            }
+            if (paymentTypeLabel) {
+                paymentTypeLabel.textContent = 'PayPal Payment';
+                paymentTypeLabel.className = 'payment-type-label paypal';
+            }
+            
+            // Update PayPal link
+            if (paypalDirectLink) {
+                paypalDirectLink.href = `https://www.paypal.com/paypalme/YourPayPalUsername/${selectedAmount}`;
+            }
+        }
+    }
+
+    // Get PayPal link container and direct link elements
+    const paypalLinkContainer = document.getElementById('paypal-link-container');
+    const paypalDirectLink = document.getElementById('paypal-direct-link');
+});
+
+    
     // Open share modal
     shareBtn.addEventListener('click', function() {
         // Generate a dummy share link (in a real app, this would be a unique URL)
