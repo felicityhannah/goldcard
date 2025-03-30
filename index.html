@@ -127,7 +127,7 @@
             <p>If you like this tool, you can buy me a coffee to support my future creations!</p>
             
             <div class="donation-benefits">
-                <p><i class="fas fa-gift"></i> Whatever's on your mind, I'm here. You can reach me at 123@123.com</p>
+                <p><i class="fas fa-gift"></i> Whatever's on your mind, I'm here. You can reach me at felicityahawhale@gmail.com</p>
             </div>
             
             <div class="payment-amount">
@@ -150,6 +150,26 @@
                     <i class="fab fa-paypal"></i>
                     <span>PayPal</span>
                 </button>
+            </div>
+ <!-- QR code display area -->
+            <div id="qrcode-display" class="qrcode-display" style="display: none;">
+                <div class="qrcode-header">
+                    <button id="back-to-methods" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                    <div id="payment-type-label" class="payment-type-label"></div>
+                </div>
+                <div class="qrcode-container">
+                    <img id="payment-qrcode" src="" alt="Payment QR Code">
+                </div>
+                <p id="qrcode-text" class="qrcode-text"></p>
+                <p class="qrcode-description">Please scan the QR code above to complete payment</p>
+                
+                <!-- Restore PayPal payment link -->
+                <div id="paypal-link-container" style="display: none;" class="payment-link-container">
+                    <p>Or click the link below to pay:</p>
+                    <a href="https://www.paypal.com/paypalme/YourPayPalUsername/10" id="paypal-direct-link" class="payment-direct-link" target="_blank">
+                        <i class="fab fa-paypal"></i> Pay with PayPal
+                    </a>
+                </div>
             </div>
             
             <p class="donation-note">May the force be with you 🪄⚔️</p>
